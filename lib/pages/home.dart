@@ -21,6 +21,14 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.black,
+        onPressed: () {},
+        child: Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       body: Container(
         margin: EdgeInsets.only(top: 50.0, left: 20.0),
         child: Column(
@@ -51,7 +59,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(
-              height: 10.0,
+              height: 15.0,
             ),
             Container(
               padding: EdgeInsets.only(
@@ -70,22 +78,156 @@ class _HomeState extends State<Home> {
               ),
             ),
             SizedBox(
-              height: 10.0,
+              height: 15.0,
+            ),
+            Container(
+              height: 170,
+              width: MediaQuery.of(context).size.width,
+              child: Expanded(
+                child: Container(
+                  height: 140,
+                  child: ListView.builder(
+                    padding: EdgeInsets.zero,
+                    itemCount: chikku.length,
+                    // shrinkWrap: true,
+                    scrollDirection: Axis.horizontal,
+                    itemBuilder: (context, index) {
+                      return CategoryTile(
+                        image: chikku[index],
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 1.0,
             ),
             Expanded(
-              child: Container(
-                height: 140,
-                child: ListView.builder(
-                  padding: EdgeInsets.zero,
-                  itemCount: chikku.length,
-                  // shrinkWrap: true,
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return CategoryTile(
-                      image: chikku[index],
-                    );
-                  },
-                ),
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            "images/cheese_burger.jpg",
+                            height: 330,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          "Cheese Burger",
+                          style: AppWidget.boldfieldtextstyle(),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            "images/biryani_large.jpg",
+                            height: 330,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          "Biryani",
+                          style: AppWidget.boldfieldtextstyle(),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            "images/fried_chicken_large.jpg",
+                            height: 330,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          "Fried Chicken",
+                          style: AppWidget.boldfieldtextstyle(),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            "images/soup_large.jpg",
+                            height: 330,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          "Soup",
+                          style: AppWidget.boldfieldtextstyle(),
+                        )
+                      ],
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(right: 20.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: Image.asset(
+                            "images/dosa_large.jpg",
+                            height: 330,
+                            width: 250,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        SizedBox(
+                          height: 5.0,
+                        ),
+                        Text(
+                          "Cheese Burger",
+                          style: AppWidget.boldfieldtextstyle(),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
