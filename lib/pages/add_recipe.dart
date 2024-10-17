@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
@@ -15,6 +16,22 @@ class AddRecipe extends StatefulWidget {
 }
 
 class _AddRecipeState extends State<AddRecipe> {
+  //*--------------------------------------------
+  String? value;
+  final List<String> recipe = [
+    "Soup Recipes",
+    "Biryani",
+    "Chicken Recipes",
+    "Fish Recipes",
+    "Mutton Recipes",
+    "Indian",
+    "Italian",
+    "Chinese",
+    "Dosa"
+  ];
+
+  //*--------------------------------------------
+
   //! --------------------------------------------
   File? selectedImage;
   TextEditingController namecontroller = new TextEditingController();
@@ -66,140 +83,178 @@ class _AddRecipeState extends State<AddRecipe> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        margin: EdgeInsets.only(
-            top: 50.0,
-            left: 20.0,
-            right: 20.0), //* ------ pure container ka hi margin hai ye ------
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  "Add Recipe",
-                  style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
-                )
-              ],
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            selectedImage != null
-                ? GestureDetector(
-                    onTap: () {
-                      getImage();
-                    },
-                    child: Center(
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all()),
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            child: Image.file(
-                              selectedImage!,
-                              fit: BoxFit.cover,
-                            )),
-                      ),
-                    ),
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.only(
+              top: 50.0,
+              left: 20.0,
+              right: 20.0), //* ------ pure container ka hi margin hai ye ------
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "Add Recipe",
+                    style:
+                        TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
                   )
-                : GestureDetector(
-                    onTap: () {
-                      getImage();
-                    },
-                    child: Center(
-                      child: Container(
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20),
-                            border: Border.all()),
-                        child: Icon(Icons.camera_alt_outlined),
+                ],
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              selectedImage != null
+                  ? GestureDetector(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: Center(
+                        child: Container(
+                          width: 200,
+                          height: 200,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all()),
+                          child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: Image.file(
+                                selectedImage!,
+                                fit: BoxFit.cover,
+                              )),
+                        ),
+                      ),
+                    )
+                  : GestureDetector(
+                      onTap: () {
+                        getImage();
+                      },
+                      child: Center(
+                        child: Container(
+                          width: 200,
+                          height: 200,
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(20),
+                              border: Border.all()),
+                          child: Icon(Icons.camera_alt_outlined),
+                        ),
                       ),
                     ),
-                  ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              "Recipe Name",
-              style: AppWidget.boldfieldtextstyle(),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10.0),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(20),
+              SizedBox(
+                height: 20.0,
               ),
-              child: TextField(
-                controller: namecontroller,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Write Recipe Name Here"),
+              Text(
+                "Recipe Name",
+                style: AppWidget.boldfieldtextstyle(),
               ),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              "Recipe Details",
-              style: AppWidget.boldfieldtextstyle(),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            Container(
-              padding: EdgeInsets.only(left: 10.0),
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                border: Border.all(),
-                borderRadius: BorderRadius.circular(20),
+              SizedBox(
+                height: 10.0,
               ),
-              child: TextField(
-                controller: detailcontroller,
-                maxLines: 10,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Write Recipe Details Here"),
-              ),
-            ),
-            SizedBox(
-              height: 10.0,
-            ),
-            GestureDetector(
-              onTap: () {
-                UploadItem();
-              },
-              child: Container(
-                padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
-                decoration: BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.circular(20)),
+              Container(
+                padding: EdgeInsets.only(left: 10.0),
                 width: MediaQuery.of(context).size.width,
-                child: Center(
-                  child: Text(
-                    "Save",
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: TextField(
+                  controller: namecontroller,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Write Recipe Name Here"),
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
+              Container(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all()),
+                child: DropdownButtonHideUnderline(
+                  child: DropdownButton<String>(
+                    items: recipe
+                        .map((item) => DropdownMenuItem(
+                            value: item,
+                            child: Text(
+                              item,
+                              style: TextStyle(
+                                  fontSize: 18.0, color: Colors.black),
+                            )))
+                        .toList(),
+                    onChanged: ((value) => setState(() {
+                          this.value = value;
+                        })),
+                    dropdownColor: Colors.white,
+                    hint: Text("Select Category"),
+                    iconSize: 36,
+                    icon: Icon(
+                      Icons.arrow_drop_down,
+                      color: Colors.black,
+                    ),
+                    value: value,
                   ),
                 ),
               ),
-            )
-          ],
+              SizedBox(
+                height: 20.0,
+              ),
+              Text(
+                "Recipe Details",
+                style: AppWidget.boldfieldtextstyle(),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Container(
+                padding: EdgeInsets.only(left: 10.0),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  border: Border.all(),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: TextField(
+                  controller: detailcontroller,
+                  maxLines: 10,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Write Recipe Details Here"),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              GestureDetector(
+                onTap: () {
+                  UploadItem();
+                },
+                child: Container(
+                  padding: EdgeInsets.only(top: 10.0, bottom: 10.0),
+                  decoration: BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.circular(20)),
+                  width: MediaQuery.of(context).size.width,
+                  child: Center(
+                    child: Text(
+                      "Save",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
