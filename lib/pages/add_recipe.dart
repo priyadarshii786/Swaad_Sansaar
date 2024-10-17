@@ -51,8 +51,10 @@ class _AddRecipeState extends State<AddRecipe> {
         detailcontroller.text != "") {
       String addId = randomAlphaNumeric(10);
 
-      Reference firebaseStorageRef =
-          FirebaseStorage.instance.ref().child("blogImage").child(addId);
+      Reference firebaseStorageRef = FirebaseStorage.instance
+          .ref()
+          .child("SwaadSansaar_Data")
+          .child(addId);
 
       final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
       var downloadurl = await (await task).ref.getDownloadURL();
@@ -223,7 +225,7 @@ class _AddRecipeState extends State<AddRecipe> {
                 ),
                 child: TextField(
                   controller: detailcontroller,
-                  maxLines: 10,
+                  maxLines: 25,
                   decoration: InputDecoration(
                       border: InputBorder.none,
                       hintText: "Write Recipe Details Here"),

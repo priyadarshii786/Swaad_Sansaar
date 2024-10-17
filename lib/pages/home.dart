@@ -18,6 +18,10 @@ class _HomeState extends State<Home> {
     "images/momos.jpg"
   ];
 
+  //! ----------------- Stream Builder to fetch data from the firestore -----------------
+
+  //! ----------------------------------
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
