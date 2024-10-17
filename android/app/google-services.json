@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "849835435636",
-    "project_id": "swaad-sansaar-8b30c",
-    "storage_bucket": "swaad-sansaar-8b30c.appspot.com"
+    "project_number": "309153737998",
+    "project_id": "swaadsansaar-ce6d5",
+    "storage_bucket": "swaadsansaar-ce6d5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:849835435636:android:7986730ef8f81964ab9321",
+        "mobilesdk_app_id": "1:309153737998:android:e8cc78d68fbcaf4f06bb5f",
         "android_client_info": {
           "package_name": "com.chikku.swaad_sansaar"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDfEAb1uFGYjhKiL_3zCw0unJRAAffk2fs"
+          "current_key": "AIzaSyCSBtf2gNyZ69K4ExIfnN64ZXcbWZBBw8U"
         }
       ],
       "services": {
