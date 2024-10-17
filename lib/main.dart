@@ -1,12 +1,13 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:swaad_sansaar/firebase_options.dart';
 import 'package:swaad_sansaar/pages/home.dart';
 import 'package:swaad_sansaar/pages/recipe.dart';
 import 'package:swaad_sansaar/pages/add_recipe.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
